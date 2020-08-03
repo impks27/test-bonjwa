@@ -1,8 +1,7 @@
 node {
     stage('Dockerize') {
         try {
-            //sh "pwd"
-            def ret = sh(script: 'dir', returnStdout: true)
+            def ret = bat(script: 'dir', returnStdout: true)
             println ret
         }
         catch (e) {
