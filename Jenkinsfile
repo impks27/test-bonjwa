@@ -1,4 +1,7 @@
 node {
+    stage('Checkout') {
+        checkout scm
+    }
     stage('Dockerize') {
         try {
             def ret = bat(script: 'dir', returnStdout: true)
