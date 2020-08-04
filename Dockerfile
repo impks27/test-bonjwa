@@ -1,5 +1,4 @@
-FROM java:8  
-COPY . /var/www/java
-WORKDIR /var/www/java
-RUN javac Hello.java  
-CMD ["java", "Hello"]
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} demo.jar
+ENTRYPOINT ["java","-jar","/demo.jar"]
