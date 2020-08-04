@@ -1,1 +1,21 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bonjwa-deployment
+  labels:
+    app: bonjwa
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bonjwa
+  template:
+    metadata:
+      labels:
+        app: bonjwa
+    spec:
+      containers:
+      - name: bonjwa
+        image: impks/test-bonjwa:latest
+        ports:
+        - containerPort: 80
