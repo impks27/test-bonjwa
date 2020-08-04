@@ -8,9 +8,3 @@ node {
         pipeline.deploy()
     }
 }
-/*
-@Library('SharedLibrary@master')_
-import org.foo.Utilities
-def utils = new Utilities(this)
-utils.getMessage()
-*/
