@@ -1,12 +1,16 @@
 def dockerize() {
-    stage('Dockerize') {
-        try {
-            def ret = bat(script: 'dir', returnStdout: true)
-            println ret
-            //docker build -t java-app .
-        } catch (e) {
-            println e
-        }
+    try {
+        buildImage()
+    } catch (e) {
+        println e
     }
 }
+
+def buildImage() {
+    def registry = "impks/test-bonjwa"
+    stage('Build Image') {
+        docker.build registry + ":$BUILD_NUMBER"
+    }
+}
+
 return this;
