@@ -1,15 +1,19 @@
 def dockerize() {
     try {
-        buildImage()
+        buildAndPushImage()
     } catch (e) {
         println e
     }
 }
 
-def buildImage() {
+def buildAndPushImage() {
     def registry = "impks/test-bonjwa"
-    stage('Build Image') {
-        docker.build registry + ":$BUILD_NUMBER"
+    def registryCredential = "dockerHubCredentialId"
+    stage('Build and Push Image') {
+        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        docker.withRegistry( '', registryCredential){
+            dockerImage.push()
+        }
     }
 }
 
