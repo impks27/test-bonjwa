@@ -1,0 +1,121 @@
+Started by user Pradeep Kumar Singh
+02:01:50 Connecting to https://api.github.com using impks27/****** (creds)
+Obtained Jenkinsfile from 6423fddc9ca4250103b500e7a4b5f4007505b725
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins.jenkins\workspace\test-bonjwa_master
+[Pipeline] {
+[Pipeline] dir
+Running in C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins.jenkins\workspace\test-bonjwa_master\test-bonjwa-40
+[Pipeline] {
+[Pipeline] checkout
+using credential impks27
+Cloning the remote Git repository
+Cloning with configured refspecs honoured and without tags
+Cloning repository https://github.com/impks27/test-bonjwa.git
+ > C:\Program Files\Git\bin\git.exe init C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins.jenkins\workspace\test-bonjwa_master\test-bonjwa-40 # timeout=10
+Fetching upstream changes from https://github.com/impks27/test-bonjwa.git
+ > C:\Program Files\Git\bin\git.exe --version # timeout=10
+ > git --version # 'git version 2.28.0.windows.1'
+using GIT_ASKPASS to set credentials creds
+ > C:\Program Files\Git\bin\git.exe fetch --no-tags --force --progress -- https://github.com/impks27/test-bonjwa.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+ > C:\Program Files\Git\bin\git.exe config remote.origin.url https://github.com/impks27/test-bonjwa.git # timeout=10
+ > C:\Program Files\Git\bin\git.exe config --add remote.origin.fetch +refs/heads/master:refs/remotes/origin/master # timeout=10
+ > C:\Program Files\Git\bin\git.exe config remote.origin.url https://github.com/impks27/test-bonjwa.git # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/impks27/test-bonjwa.git
+using GIT_ASKPASS to set credentials creds
+ > C:\Program Files\Git\bin\git.exe fetch --no-tags --force --progress -- https://github.com/impks27/test-bonjwa.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+Checking out Revision 6423fddc9ca4250103b500e7a4b5f4007505b725 (master)
+ > C:\Program Files\Git\bin\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\bin\git.exe checkout -f 6423fddc9ca4250103b500e7a4b5f4007505b725 # timeout=10
+Commit message: "Update Jenkinsfile"
+ > C:\Program Files\Git\bin\git.exe rev-list --no-walk e854370b894e1b3fd8e597062ff549e8975998fa # timeout=10
+[Pipeline] load
+[Pipeline] { (Pipeline.groovy)
+[Pipeline] }
+[Pipeline] // load
+[Pipeline] stage
+[Pipeline] { (Build and Push Image)
+[Pipeline] isUnix
+[Pipeline] bat
+
+C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins.jenkins\workspace\test-bonjwa_master\test-bonjwa-40>docker build -t impks/test-bonjwa:latest . 
+Sending build context to Docker daemon  90.62kB
+
+Step 1/5 : FROM java:8
+ ---> d23bdf5b1b1b
+Step 2/5 : COPY . /var/www/java
+ ---> 92e8d2575881
+Step 3/5 : WORKDIR /var/www/java
+ ---> Running in e2aaeb63aa94
+Removing intermediate container e2aaeb63aa94
+ ---> 3029c16d3208
+Step 4/5 : RUN javac Hello.java
+ ---> Running in b095d39538c2
+Removing intermediate container b095d39538c2
+ ---> e22fd4ceb088
+Step 5/5 : CMD ["java", "Hello"]
+ ---> Running in 7a4d269f505a
+Removing intermediate container 7a4d269f505a
+ ---> 077e8e8ccec6
+Successfully built 077e8e8ccec6
+Successfully tagged impks/test-bonjwa:latest
+SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker host. All files and directories added to build context will have '-rwxr-xr-x' permissions. It is recommended to double check and reset permissions for sensitive files and directories.
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u impks -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+Login Succeeded
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] bat
+
+C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins.jenkins\workspace\test-bonjwa_master\test-bonjwa-40>docker tag impks/test-bonjwa:latest impks/test-bonjwa:latest 
+[Pipeline] isUnix
+[Pipeline] bat
+
+C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins.jenkins\workspace\test-bonjwa_master\test-bonjwa-40>docker push impks/test-bonjwa:latest 
+The push refers to repository [docker.io/impks/test-bonjwa]
+fe5c6dee8dbe: Preparing
+49d912be7e65: Preparing
+35c20f26d188: Preparing
+c3fe59dd9556: Preparing
+6ed1a81ba5b6: Preparing
+a3483ce177ce: Preparing
+ce6c8756685b: Preparing
+30339f20ced0: Preparing
+0eb22bfb707d: Preparing
+a2ae92ffcd29: Preparing
+ce6c8756685b: Waiting
+30339f20ced0: Waiting
+0eb22bfb707d: Waiting
+a2ae92ffcd29: Waiting
+a3483ce177ce: Waiting
+6ed1a81ba5b6: Layer already exists
+35c20f26d188: Layer already exists
+c3fe59dd9556: Layer already exists
+a3483ce177ce: Layer already exists
+30339f20ced0: Layer already exists
+ce6c8756685b: Layer already exists
+0eb22bfb707d: Layer already exists
+a2ae92ffcd29: Layer already exists
+fe5c6dee8dbe: Pushed
+49d912be7e65: Pushed
+latest: digest: sha256:e463d2cb36ae24ced1d28cf8477783ccf79b332cae85dac5c8d25297e1640abb size: 2416
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
