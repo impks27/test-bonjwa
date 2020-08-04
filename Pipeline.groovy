@@ -23,7 +23,8 @@ def buildAndPushImage() {
 
 def deploy() {
     stage('Deploy to k8s') {
-        bat "kubectl apply -f k8s.yml"
+        bat "kubectl cluster-info"
+        //bat "kubectl apply -f k8s.yml"
     }
 }
 return this;
