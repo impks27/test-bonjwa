@@ -9,3 +9,4 @@ def dockerize() {
         }
     }
 }
+return this;
