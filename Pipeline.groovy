@@ -11,7 +11,7 @@ def buildAndPushImage() {
     def registryCredential = "impks-dockerHub"
     stage('Build and Push Image') {
         dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        docker.withRegistry( '', registryCredential){
+        docker.withRegistry('', registryCredential) {
             dockerImage.push()
         }
     }
