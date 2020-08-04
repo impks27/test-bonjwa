@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bonjwa-deployment
+  name: bonjwa-app
   labels:
     app: bonjwa
 spec:
