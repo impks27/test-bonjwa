@@ -30,6 +30,10 @@ def deploy() {
         )
     }
 }
+
+def build() {
+    bat "gradlew clean build"
+}
 return this;
 
 //bat "kubectl cluster-info"
