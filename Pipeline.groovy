@@ -21,4 +21,7 @@ def buildAndPushImage() {
     }
 }
 
+def deploy() {
+    bat "kubectl apply -f k8s.yml"
+}
 return this;
