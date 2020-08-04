@@ -1,14 +1,20 @@
 node {
+    def workspace = "test-bonjwa-${BUILD_NUMBER}"
     stage('Checkout') {
-        checkout scm
+        dir(workspace) {
+            checkout scm
+        }
     }
     stage('Dockerize') {
-        try {
-            def ret = bat(script: 'dir', returnStdout: true)
-            println ret
-        }
-        catch (e) {
-            println e
+        dir(workspace) {
+            try {
+                def ret = bat(script: 'dir', returnStdout: true)
+                println ret
+                docker build -t java-app .
+            }
+            catch (e) {
+                println e
+            }
         }
     }
 }
