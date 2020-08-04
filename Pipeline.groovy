@@ -32,7 +32,9 @@ def deploy() {
 }
 
 def build() {
-    bat "gradlew clean build"
+    stage('Build App') {
+        bat "gradlew clean build"
+    }
 }
 return this;
 
