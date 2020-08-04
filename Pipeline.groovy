@@ -23,8 +23,13 @@ def buildAndPushImage() {
 
 def deploy() {
     stage('Deploy to k8s') {
-        bat "kubectl cluster-info"
+        //bat "kubectl cluster-info"
         //bat "kubectl apply -f k8s.yml"
+        kubernetesDeploy(
+            kubeconfigId: 'kubeconfig',
+            configs: 'k8s.yml',
+            enableConfigSubstitution: true
+        )
     }
 }
 return this;
