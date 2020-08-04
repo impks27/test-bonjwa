@@ -23,19 +23,20 @@ def buildAndPushImage() {
 
 def deploy() {
     stage('Deploy to k8s') {
-        //bat "kubectl cluster-info"
-        //bat "kubectl apply -f k8s.yml"
         kubernetesDeploy(
             kubeconfigId: 'kubeconfig',
             configs: 'k8s.yml',
             enableConfigSubstitution: true
         )
-        /*withCredentials([kubeconfigFile(credentialsId: 'acs-ssh-folder', variable: 'KUBECONFIG')]) {
-            sh '''cat $KUBECONFIG'''
-        }*/
-        /*withCredentials([kubeconfigContent(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
-            bat "kubectl cluster-info"
-        }*/
     }
 }
 return this;
+
+//bat "kubectl cluster-info"
+//bat "kubectl apply -f k8s.yml"
+/*withCredentials([kubeconfigFile(credentialsId: 'acs-ssh-folder', variable: 'KUBECONFIG')]) {
+    sh '''cat $KUBECONFIG'''
+}*/
+/*withCredentials([kubeconfigContent(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
+    bat "kubectl cluster-info"
+}*/
