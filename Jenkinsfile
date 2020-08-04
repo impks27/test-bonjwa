@@ -1,16 +1,10 @@
 node {
     def workspace = "test-bonjwa-${BUILD_NUMBER}"
     def pipeline
-    stage('Checkout') {
-        dir(workspace) {
-            checkout scm
-            pipeline = load "Pipeline.groovy"
-        }
-    }
-    stage('Dockerize') {
-        dir(workspace) {
-            pipeline.dockerize()
-        }
+    dir(workspace) {
+        checkout scm
+        pipeline = load "Pipeline.groovy"
+        pipeline.dockerize()
     }
 }
 /*
