@@ -4,7 +4,7 @@ node {
     dir(workspace) {
         checkout scm
         pipeline = load "Pipeline.groovy"
-        //pipeline.dockerize()
-        pipeline.deploy()
+        pipeline.dockerize()
+        //pipeline.deploy()
     }
 }
