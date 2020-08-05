@@ -5,6 +5,6 @@ node {
         checkout scm
         pipeline = load "Pipeline.groovy"
         pipeline.dockerize()
-        //pipeline.deploy()
+        pipeline.deploy()
     }
 }
